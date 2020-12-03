@@ -60,32 +60,37 @@ function draw(){
     if(keyDown("space")){
         flag = 0;
     }
-
     getCount()
     getR()
     background(moonImg)
     if((lives>0)){
-
-        if(keyIsDown(UP_ARROW)){
+        if(keyWentDown("up")){
             astronaut.velocityY = -5
-            astronaut.velocityX = 0
         }
-        else if(keyIsDown(DOWN_ARROW)){
+        if(keyWentUp("up")){
+            astronaut.velocityY = 0;
+            astronaut.velocityX = 0;
+        }
+        if(keyWentDown("down")){
             astronaut.velocityY = 5
+        }
+        if(keyWentUp("down")){
+            astronaut.velocityY = 0;
             astronaut.velocityX = 0;
         }
-        else if(keyIsDown(RIGHT_ARROW)){
-            astronaut.velocityX = 5
-            astronaut.velocityY = 0;
-        }
-        else if(keyIsDown(LEFT_ARROW)){
+        if(keyWentDown("left")){
             astronaut.velocityX = -5
-            astronaut.velocityY = 0;
         }
-        
-        else{
-            astronaut.velocityX = 0;
+        if(keyWentUp("left")){
             astronaut.velocityY = 0;
+            astronaut.velocityX = 0;
+        }
+        if(keyWentDown("right")){
+            astronaut.velocityX = +5
+        }
+        if(keyWentUp("right")){
+            astronaut.velocityY = 0;
+            astronaut.velocityX = 0;
         }
         spawnAliens()
         spawnResources()
@@ -100,11 +105,13 @@ function draw(){
             alert(dataBaseCount + " lives left! Be careful!")
             updateCount(dataBaseCount)
             alienGroup.destroyEach(); 
-            console.log(astronaut.x);            flag = 1;
+            console.log(astronaut.x);            
+            flag = 1;
             alert("Press space to continue")
             //break - to come out of the loop. return - to exit the function
             astronaut.velocityX = 0;
             astronaut.velocityY = 0;
+            
          }
          if(resourceGroup.isTouching(astronaut)){
             getR()
@@ -115,6 +122,8 @@ function draw(){
 
             astronaut.velocityX = 0;
             astronaut.velocityY = 0;
+            astronaut.x += 50;
+            astronaut.y += 50;
          }
         if(dataBaseCount == 0){
             getCount()
@@ -126,7 +135,7 @@ function draw(){
             }
         });
     }
-    drawSprites()
+    drawSprites();
 }
 
 
