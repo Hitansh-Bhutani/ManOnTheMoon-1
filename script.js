@@ -54,6 +54,9 @@ function updateR(updateR) {
         r: updateR
     })
 }
+
+// getting the count 
+
 getCount()
 getR()
 function draw(){
